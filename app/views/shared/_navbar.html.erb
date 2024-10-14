@@ -1,0 +1,121 @@
+<nav class="bg-white border-b border-gray-100" data-controller="navbar">
+  <div class="container mx-auto px-2 sm:px-4 lg:px-8">
+    <div class="flex justify-between h-16">
+      <div class="flex px-2 lg:px-0">
+        <div class="flex-shrink-0 flex items-center">
+          <%= link_to root_path, class: "flex-shrink-0 flex items-center" do %>
+            <%= image_tag "logo.svg", alt: "Bukclub", class: "h-5 md:h-6 w-auto" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
+        <div class="max-w-lg w-full lg:max-w-xs">
+          <label for="search" class="sr-only">Search</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input id="search" name="search" class="block w-full pl-10 pr-3 py-1.5 border border-gray-300 rounded-full leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-emerald-700 focus:border-emerald-700 sm:text-sm" placeholder="Search" type="search">
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center lg:hidden">
+        <!-- Mobile menu button -->
+        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500" data-action="click->navbar#toggleMenu">
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed -->
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-navbar-target="openIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <!-- Icon when menu is open -->
+          <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" data-navbar-target="closeIcon">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="hidden lg:ml-4 lg:flex lg:items-center">
+        <% if user_signed_in? %>
+          <!-- Profile dropdown -->
+          <div class="ml-4 relative flex-shrink-0" data-controller="dropdown">
+            <div>
+              <button type="button" class="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true" data-action="click->dropdown#toggle">
+                <span class="sr-only">Open user menu</span>
+                <img class="h-10 w-10 rounded-full" src="<%= 'https://via.placeholder.com/40' %>" alt="">
+              </button>
+            </div>
+            <!-- Dropdown menu, show/hide based on menu state. -->
+            <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-300 ease-out opacity-0 scale-95 invisible" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-dropdown-target="menu">
+              <%= link_to "Your Profile", edit_user_registration_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem", tabindex: "-1" %>
+              <%= link_to "Settings", "#", class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem", tabindex: "-1" %>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem", tabindex: "-1" %>
+            </div>
+          </div>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, class: "ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-1.5 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-emerald-600 hover:bg-emerald-700" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dark overlay -->
+  <div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40 hidden" data-navbar-target="overlay" data-action="click->navbar#toggleMenu"></div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="lg:hidden fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-xl overflow-y-auto z-50 transform ease-in-out duration-300 translate-x-full" data-navbar-target="menu">
+    <div class="py-2 px-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <%= image_tag "logo.svg", alt: "Bukclub", class: "h-5 md:h-6 w-auto" %>
+        </div>
+        <div class="-mr-2">
+          <button type="button" class="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-500" data-action="click->navbar#toggleMenu">
+            <span class="sr-only">Close menu</span>
+            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="mt-6">
+        <nav>
+          <ul class="grid gap-y-6">
+            <li>
+              <%= link_to "Home", root_path, class: "text-gray-500 hover:text-gray-800 hover:bg-gray-100" %>
+            </li>
+            <li>
+              <%= link_to "About", "#", class: "text-gray-500 hover:text-gray-800 hover:bg-gray-100" %>
+            </li>
+            <li>
+              <%= link_to "Contact", "#", class: "text-gray-500 hover:text-gray-800 hover:bg-gray-100" %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="py-2 absolute right-0 left-0 bottom-0 border-t border-gray-200">
+      <% if user_signed_in? %>
+        <div class="flex items-center px-4">
+          <div class="flex-shrink-0">
+            <img class="h-10 w-10 rounded-full" src="<%= 'https://via.placeholder.com/40' %>" alt="">
+          </div>
+          <div class="ml-3">
+            <div class="text-base font-medium text-gray-800"><%= current_user.username %></div>
+            <div class="text-sm font-medium text-gray-500"><%= current_user.email %></div>
+          </div>
+        </div>
+        <div class="mt-2 space-y-1">
+          <%= link_to "Your Profile", edit_user_registration_path, class: "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100" %>
+          <%= link_to "Settings", "#", class: "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100" %>
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100" %>
+        </div>
+      <% else %>
+        <div class="mt-2 space-y-1">
+          <%= link_to "Sign up", new_user_registration_path, class: "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100" %>
+          <%= link_to "Log in", new_user_session_path, class: "block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</nav>
