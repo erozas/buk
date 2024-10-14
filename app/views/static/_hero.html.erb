@@ -1,17 +1,15 @@
 <section class="bg-emerald-50">
-  <div class="container mx-auto px-6 lg:pl-24 py-8 sm:py-16">
+  <div class="container mx-auto px-4 lg:pl-24 py-8 sm:py-16">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div>
-        <h1 class="text-3xl sm:text-4xl font-bold text-emerald-900 mb-2">
+        <h1 class="text-xl sm:text-3xl font-bold text-emerald-900">
           Rediscover the Joy of Reading
         </h1>
-        <p class="text-lg text-emerald-800 mb-6 pr-12">
+        <p class="text-base text-emerald-800 mb-2 pr-12">
           Discover a world of possibilities with our carefully curated collection of books. Read more and read better with bukclub.
         </p>
         <div class="space-x-4">
-          <a href="#" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-6 rounded-full transition duration-300">
-            Get Started
-          </a>
+          <%= link_to "Get started", about_us_path, class: "inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-1.5 px-4 rounded-full transition duration-300" %>
           <a href="#" class="inline-block bg-transparent hover:bg-emerald-100 text-emerald-600 font-semibold py-3 px-6 rounded-full transition duration-300">
             Learn More
           </a>

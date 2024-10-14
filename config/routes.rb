@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  get 'about-us', to: 'static#about_us', as: :about_us
+
   # Defines the root path route ("/")
   root "static#home"
 end
