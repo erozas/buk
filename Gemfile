@@ -11,7 +11,8 @@ gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+## Run turbo-rails on main
+gem "turbo-rails", github: "hotwired/turbo-rails", branch: "main"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
@@ -59,4 +60,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+gem "friendly_id"
 gem "avo", ">= 3.2"

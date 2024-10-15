@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get 'about-us', to: 'static#about_us', as: :about_us
 
+  resources :books, only: [:index, :show, :new, :create, :edit, :update]
+
   # Defines the root path route ("/")
   root "static#home"
 end

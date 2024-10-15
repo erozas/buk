@@ -21,9 +21,10 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" unless turbo_native_app? %>
+    <%= render "shared/navbar" %>
     <%= render "shared/flash_messages" %>
     <%= yield %>
-    <%= render "shared/footer" unless turbo_native_app? %>
+    <%= render "shared/footer" unless hotwire_native_app? %>
+    <%= render "shared/bottom_bar" unless hotwire_native_app? %>
   </body>
 </html>
