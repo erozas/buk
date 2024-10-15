@@ -1,0 +1,52 @@
+<div class="bg-white min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-4xl font-extrabold text-gray-900 mb-8">
+      Frequently Asked Questions
+    </h1>
+    
+    <div class="space-y-6">
+      <% faqs = [
+        {
+          question: "What is Ruby on Rails?",
+          answer: "Ruby on Rails is a web application framework written in Ruby. It's designed to make programming web applications easier by making assumptions about what every developer needs to get started."
+        },
+        {
+          question: "How do I install Ruby on Rails?",
+          answer: "You can install Ruby on Rails by first installing Ruby, then running the command 'gem install rails' in your terminal. For detailed instructions, please refer to the official Ruby on Rails guide."
+        },
+        {
+          question: "What is Tailwind CSS?",
+          answer: "Tailwind CSS is a utility-first CSS framework that allows you to build custom designs without ever leaving your HTML. It provides low-level utility classes that let you build completely custom designs."
+        },
+        {
+          question: "How do I contribute to open source projects?",
+          answer: "To contribute to open source projects, start by finding a project you're interested in on platforms like GitHub. Read the project's contribution guidelines, fork the repository, make your changes, and submit a pull request. Don't forget to communicate with the project maintainers!"
+        },
+        {
+          question: "What are the benefits of using version control?",
+          answer: "Version control systems like Git allow you to track changes in your code, collaborate with others, maintain different versions of a project, and easily revert to previous states if needed. It's an essential tool for both individual developers and teams."
+        }
+      ] %>
+
+      <% faqs.each do |faq| %>
+        <div class="border-b border-gray-200 pb-4">
+          <h3 class="text-lg font-medium text-gray-900 mb-2">
+            <%= faq[:question] %>
+          </h3>
+          <p class="text-base text-gray-500">
+            <%= faq[:answer] %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="mt-12">
+      <p class="text-base text-gray-500">
+        Can't find the answer you're looking for? 
+        <a href="#" class="font-medium text-emerald-600 hover:text-emerald-500">
+          Contact our support team
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

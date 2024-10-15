@@ -16,8 +16,13 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   get 'about-us', to: 'static#about_us', as: :about_us
+  get 'faq', to: 'static#faq', as: :faq
+  get 'customers', to: 'static#customers', as: :customers
 
-  resources :books, only: [:index, :show, :new, :create, :edit, :update]
+  resources :articles, only: [:index, :show]
+  resources :books, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :reviews, only: [:new, :create]
+  end
 
   # Defines the root path route ("/")
   root "static#home"

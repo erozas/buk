@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   has_one_attached :cover
+  has_many :reviews, class_name: "BookReview", dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
   validates :isbn,  presence: true, uniqueness: true

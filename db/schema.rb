@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_14_054240) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_15_092718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,32 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_14_054240) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.string "excerpt"
+    t.text "content"
+    t.string "slug"
+    t.datetime "published_at"
+    t.boolean "published", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+    t.index ["title"], name: "index_articles_on_title", unique: true
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "book_reviews", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.integer "rating"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_book_reviews_on_book_id"
+    t.index ["user_id"], name: "index_book_reviews_on_user_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -89,4 +115,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_14_054240) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "users"
+  add_foreign_key "book_reviews", "books"
+  add_foreign_key "book_reviews", "users"
 end

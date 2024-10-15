@@ -1,0 +1,25 @@
+<div class="max-w-2xl mx-auto px-6">
+
+  <%= form_with(model: @book_review, url: book_reviews_path(@book.slug), local: true, class: "space-y-6") do |form| %>
+    <% if @book_review.errors.any? %>
+      <%= render "shared/error_messages", resource: @book_review %>
+    <% end %>
+    <div>
+      <h1 class="text-xl font-bold text-gray-900">Review <%= @book.title %></h1>
+      <p class="text-gray-500">Please be considerate, consider that other users will see your review and it can impact their decisions.</p>
+    </div>
+    <div>
+      <%= form.label :rating, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_field :rating, class: "py-1.5 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-emerald-500 focus:ring focus:ring-emerald-200 focus:ring-opacity-50" %>
+    </div>
+
+    <div>
+      <%= form.label :content, class: "block text-sm font-medium text-gray-700" %>
+      <%= form.text_area :content, rows: 5, class: "py-1.5 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-emerald-500 focus:ring focus:ring-emerald-200 focus:ring-opacity-50" %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= form.submit "Review book", class: "px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition duration-150 ease-in-out" %>
+    </div>
+  <% end %>
+</div>

@@ -21,7 +21,7 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+    <%= render "shared/navbar" unless hotwire_native_app? %>
     <%= render "shared/flash_messages" %>
     <%= yield %>
     <%= render "shared/footer" unless hotwire_native_app? %>
