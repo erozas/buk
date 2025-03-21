@@ -30,6 +30,10 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
+  # Blog routes
+  get 'blog', to: 'articles#index', as: :blog
+  get 'blog/:id', to: 'articles#show', as: :blog_post
+
   # Defines the root path route ("/")
   root "static#home"
 end
