@@ -44,10 +44,12 @@ end
 
 gem "avo", ">= 3.2"
 gem "aws-sdk-s3"
+gem "commonmarker"
 gem "devise", "~> 4.9"
 gem "figaro", git: "https://github.com/laserlemon/figaro"
 gem "friendly_id"
 gem "inline_svg"
+gem "marksmith"
 gem "omniauth"
 gem "omniauth-github"
 gem "omniauth-google-oauth2"
