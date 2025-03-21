@@ -40,8 +40,7 @@ Avo.configure do |config|
   #   search: 'search?',
   # }
   # config.raise_error_on_missing_policy = false
-  config.authorization_client = nil
-  config.implicit_authorization = true
+  # config.authorization_client = nil
 
   ## == Localization ==
   # config.locale = 'en-US'
