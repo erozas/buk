@@ -33,6 +33,10 @@ class Article < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  def formatted_content
+    MarkdownRenderer.render(content)
+  end
+
   private
 
   def should_generate_new_friendly_id?
