@@ -5,3 +5,120 @@
 body {
   font-family: "Figtree", sans-serif;
 }
+
+
+.blog-content {
+  @apply text-gray-800 leading-relaxed;
+  
+  h1 {
+    @apply text-3xl font-bold text-gray-900 mt-4 mb-4 tracking-tight;
+  }
+  
+  h2 {
+    @apply text-2xl font-bold text-gray-900 mt-4 mb-3 tracking-tight;
+  }
+  
+  h3 {
+    @apply text-xl font-semibold text-gray-900 mt-4 mb-3;
+  }
+  
+  h4 {
+    @apply text-lg font-semibold text-gray-900 mt-4 mb-2;
+  }
+  
+  h5, h6 {
+    @apply text-base font-semibold text-gray-900 mt-4 mb-2;
+  }
+  
+  p {
+    @apply my-3 text-lg;
+  }
+  
+  ul, ol {
+    @apply my-4 pl-8;
+  }
+  
+  ul {
+    @apply list-disc;
+  }
+  
+  ol {
+    @apply list-decimal;
+  }
+  
+  li {
+    @apply mb-2;
+  }
+  
+  li > ul, li > ol {
+    @apply my-2;
+  }
+  
+  blockquote {
+    @apply pl-4 py-1 border-l-4 border-gray-300 bg-gray-50 my-6 italic text-gray-700;
+  }
+  
+  pre {
+    @apply bg-gray-100 rounded-md p-4 overflow-x-auto my-6 text-sm;
+  }
+  
+  code {
+    @apply bg-gray-100 px-1.5 py-0.5 rounded text-sm font-mono text-gray-800;
+  }
+  
+  pre code {
+    @apply bg-transparent p-0 text-gray-800;
+  }
+
+  pre {
+    @apply whitespace-pre-wrap break-words max-w-full overflow-x-auto;
+  }
+  
+  code {
+    @apply break-words;
+  }
+  
+  a {
+    @apply text-gray-900 font-medium underline decoration-gray-700 underline-offset-2 hover:text-gray-900 hover:decoration-gray-500 transition-all duration-200;
+  }
+  
+  img {
+    @apply max-w-full h-auto rounded-md my-6 mx-auto shadow-sm;
+  }
+  
+  table {
+    @apply w-full my-6 border-collapse;
+  }
+  
+  th {
+    @apply bg-gray-100 px-4 py-2 text-left font-semibold border border-gray-300 text-gray-700;
+  }
+  
+  td {
+    @apply px-4 py-2 border border-gray-300;
+  }
+  
+  hr {
+    @apply my-8 border-t border-gray-200;
+  }
+  
+  dl {
+    @apply my-4;
+  }
+  
+  dt {
+    @apply font-semibold text-gray-900;
+  }
+  
+  dd {
+    @apply ml-4 mb-4;
+  }
+  
+  figure {
+    @apply my-6;
+  }
+  
+  figcaption {
+    @apply text-sm text-center text-gray-600 mt-2;
+  }
+}
