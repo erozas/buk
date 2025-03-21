@@ -61,6 +61,15 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem "devise", "~> 4.9"
-gem "friendly_id"
 gem "avo", ">= 3.2"
+gem "aws-sdk-s3"
+gem "devise", "~> 4.9"
+gem "figaro", git: "https://github.com/laserlemon/figaro"
+gem "friendly_id"
+gem "inline_svg"
+gem "omniauth"
+gem "omniauth-github"
+gem "omniauth-google-oauth2"
+gem 'omniauth-rails_csrf_protection'
+gem "sitemap_generator"
+gem 'whenever', require: false

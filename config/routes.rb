@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # If current_user is admin mount Avo routes
@@ -19,7 +19,13 @@ Rails.application.routes.draw do
   get 'faq', to: 'static#faq', as: :faq
   get 'customers', to: 'static#customers', as: :customers
 
+  get '/rss', to: 'static#rss', as: :rss
+  get 'sitemap.xml', to: redirect('https://s3.amazonaws.com/tutorials-public-avo/sitemap.xml')
+  get 'dynamic-sitemap.xml', to: 'sitemap#index', as: :dynamic_sitemap
+
   resources :articles, only: [:index, :show]
+  resource :oauth_connections, only: [:create]
+  resource :profile, only: [:show]
   resources :books, only: [:index, :show, :new, :create, :edit, :update] do
     resources :reviews, only: [:new, :create]
   end

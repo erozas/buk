@@ -6,4 +6,11 @@ class StaticController < ApplicationController
   def faq; end
 
   def customers; end
+
+  def rss
+    request.format = :xml
+    respond_to do |format|
+      format.xml
+    end
+  end
 end

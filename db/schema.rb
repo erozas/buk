@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_15_092718) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_24_013330) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,6 +82,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_092718) do
     t.index ["title"], name: "index_books_on_title", unique: true
   end
 
+  create_table "connected_services", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_connected_services_on_user_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -118,4 +127,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_15_092718) do
   add_foreign_key "articles", "users"
   add_foreign_key "book_reviews", "books"
   add_foreign_key "book_reviews", "users"
+  add_foreign_key "connected_services", "users"
 end

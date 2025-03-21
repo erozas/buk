@@ -1,0 +1,48 @@
+<!-- Hero -->
+<div class="w-full bg-emerald-100">
+  <div class="max-w-screen-xl mx-auto">
+    <div class="overflow-hidden">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 md:col-span-6 lg:col-span-4 py-6">
+          <div class="flex items-center gap-x-4 px-8">
+            <%= image_tag current_user.avatar, class: "w-16 h-16 rounded-full" %>
+            <div class="flex flex-col">
+              <h1 class="text-2xl font-bold"><%= current_user.username %></h1>
+              <p class="text-zinc-600">Joined Buk <%= time_ago_in_words(current_user.created_at) %> ago</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="max-w-screen-xl mx-auto pt-12 pb-16">
+  <div class="grid grid-cols-12 gap-x-6">
+    <%= render "profiles/sidebar" %>
+    <div class="col-span-12 md:col-span-6 lg:col-span-8">
+      <div class="bg-white border border-zinc-200 rounded-lg py-4 px-6">
+        <h2 class="text-lg font-bold text-zinc-950">Connected OAuth Account</h2>
+        <div class="flex items-center gap-x-3 mt-2.5">
+          <% if current_user.connected_services.any? %>
+            <ul class="inline-flex items-center gap-x-4">
+              <% current_user.connected_services.each do |service| %>
+                <%= render "connected_services/service", service: service %>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-zinc-600">You have not connected any OAuth accounts yet.</p>
+          <% end %>
+
+          <% User::OAUTH_PROVIDERS.reject { |provider| ConnectedService.where(provider: provider[:name], user: current_user).exists? }.each do |provider| %>
+            <div class="inline-flex items-center gap-x-2 px-4 py-2 rounded-md border border-gray-300">
+              <%= form_tag "/users/auth/#{provider[:name]}", method: :post, data: {turbo: false} do %>
+                <%= button_tag "Connect #{provider[:humanized_name]}", class: "text-sm text-gray-500" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
