@@ -1,0 +1,71 @@
+<article class="max-w-screen-xl mx-auto px-6 sm:px-8 py-12">
+  <div class="grid grid-cols-12 gap-x-6">
+    <div class="col-span-9">
+      <div class="mb-6">
+        <%= render 'articles/breadcrumbs' %>
+        
+        <!-- Article title -->
+        <h1 class="text-4xl font-bold text-gray-900 mb-4"><%= @article.title %></h1>
+        
+        <!-- Article metadata -->
+        <div class="flex items-center space-x-4 mb-2">
+          <div class="flex items-center">
+            <div class="bg-emerald-100 rounded-full h-10 w-10 flex items-center justify-center mr-3">
+              <span class="text-emerald-600 font-medium text-sm">
+                <%= @article.user.email.first.upcase %>
+              </span>
+            </div>
+            <div>
+              <p class="text-gray-700"><%= @article.user.username %></p>
+            </div>
+          </div>
+          <span class="text-gray-300">•</span>
+          <time class="text-gray-500">
+            <%= @article.published_at.strftime("%B %d, %Y") %>
+          </time>
+        </div>
+      </div>
+      
+      <!-- Article content -->
+      <div class="blog-content max-w-none">
+        <%== @article.formatted_content %>
+      </div>
+      
+      <!-- Tags (if your model has tags) -->
+      <% if @article.respond_to?(:tags) && @article.tags.present? %>
+        <div class="mt-12 pt-6 border-t border-gray-100">
+          <div class="flex flex-wrap gap-2">
+            <% @article.tags.each do |tag| %>
+              <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-sm text-gray-600">
+                #<%= tag %>
+              </span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+      
+      <!-- Comments section (if your app has comments) -->
+      <% if @article.respond_to?(:comments) && @article.comments.present? %>
+        <section class="mt-12 pt-8 border-t border-gray-100">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Comments</h2>
+          
+          <div class="space-y-6">
+            <% @article.comments.each do |comment| %>
+              <div class="bg-gray-50 p-4 rounded-lg">
+                <div class="flex items-center mb-2">
+                  <span class="font-medium text-gray-900"><%= comment.user.email %></span>
+                  <span class="mx-2 text-gray-300">•</span>
+                  <span class="text-sm text-gray-500"><%= time_ago_in_words(comment.created_at) %> ago</span>
+                </div>
+                <p class="text-gray-700"><%= comment.body %></p>
+              </div>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+    </div>
+    <div class="col-span-3">
+      <%= render 'articles/sidebar' %>
+    </div>
+  </div>
+</article>

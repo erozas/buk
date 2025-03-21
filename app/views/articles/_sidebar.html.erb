@@ -1,0 +1,35 @@
+<div class="h-full border-l border-gray-100 p-6 space-y-8">
+  <!-- Profile section -->
+  <div class="text-center pb-6 border-b border-gray-100">
+    <div class="bg-emerald-100 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-3">
+      <span class="text-emerald-600 text-xl font-semibold">JD</span>
+    </div>
+    <h3 class="font-medium text-gray-900">John Doe</h3>
+    <p class="text-sm text-gray-500">Content Writer</p>
+  </div>
+  
+  <!-- Popular Articles -->
+  <div>
+    <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Popular Articles</h4>
+    <% @popular_articles.each do |article| %>
+      <div class="mb-4">
+        <%= link_to article.title.truncate(40), class: "block text-gray-900 hover:text-emerald-600" do %>
+          <h5 class="text-gray-900 group-hover:text-emerald-600 font-medium mb-1"><%= article.title.truncate(40) %></h5>
+          <p class="text-sm text-gray-500"><%= article.published_at.strftime("%B %d, %Y") %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  
+  <!-- Categories section -->
+  <div>
+    <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Categories</h4>
+    <div class="space-y-2">
+      <a href="#" class="block text-gray-700 hover:text-emerald-600">Ruby on Rails</a>
+      <a href="#" class="block text-gray-700 hover:text-emerald-600">Web Development</a>
+      <a href="#" class="block text-gray-700 hover:text-emerald-600">Design</a>
+      <a href="#" class="block text-gray-700 hover:text-emerald-600">Technology</a>
+      <a href="#" class="block text-gray-700 hover:text-emerald-600">Tutorials</a>
+    </div>
+  </div>
+</div>
