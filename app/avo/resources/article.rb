@@ -19,7 +19,7 @@ class Avo::Resources::Article < Avo::BaseResource
     field :user, as: :belongs_to
     field :title, as: :text
     field :excerpt, as: :text
-    field :content, as: :textarea
+    field :content, as: :markdown
     field :slug, as: :text
   end
 end
