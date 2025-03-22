@@ -20,6 +20,7 @@ class Avo::Resources::Article < Avo::BaseResource
     field :title, as: :text
     field :excerpt, as: :text
     field :content, as: :markdown
+    field :cover, as: :file, is_image: true
     field :slug, as: :text
   end
 end
