@@ -144,15 +144,4 @@ books = [
 # end
 
 user = User.first
-50.times do |i|
-  article = Article.create!(
-    user: user,
-    title: FFaker::Book.title,
-    excerpt: FFaker::Lorem.sentence,
-    content: FFaker::Lorem.paragraphs(rand(3..5)).join("\n\n")
-  )
-  puts "Created article #{i+1}: #{article.title}"
-end
-
-
-puts "Created #{Article.count} articles"
+Article.destroy_all
