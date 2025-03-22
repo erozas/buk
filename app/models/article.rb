@@ -24,6 +24,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Article < ApplicationRecord
+  has_one_attached :cover
+  
   belongs_to :user
 
   validates :title, presence: true, uniqueness: true
