@@ -1,12 +1,6 @@
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
 
 books = [
   {
@@ -139,9 +133,136 @@ books = [
   }
 ]
 
-# books.each do |book|
-#   Book.create!(book)
-# end
+books.each do |book|
+  Book.find_or_create_by!(title: book[:title]) do |book|
+    book.isbn = book[:isbn]
+    book.excerpt = book[:excerpt]
+    book.description = book[:description]
+    book.pages_count = book[:pages_count]
+    book.author_name = book[:author_name]
+  end
+end
 
-user = User.first
-Article.destroy_all
+#### GENRES ####
+genres = [
+  {
+    name: "Fantasy",
+    description: "Fantasy literature includes elements that are not realistic, such as magical powers, talking animals, and fictional worlds.",
+    excerpt: "The ancient dragon spread its massive wings, casting a shadow over the enchanted forest below."
+  },
+  {
+    name: "Science Fiction",
+    description: "Science fiction deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life.",
+    excerpt: "The spaceship's quantum drive hummed to life as it prepared to jump through the wormhole."
+  },
+  {
+    name: "Mystery",
+    description: "Mystery fiction is a genre of fiction that usually involves a mysterious death or a crime to be solved.",
+    excerpt: "Detective Morgan studied the crime scene, noticing the one detail everyone else had missed."
+  },
+  {
+    name: "Thriller",
+    description: "Thriller is a genre of fiction in which tough, resourceful, but essentially ordinary heroes are pitted against villains determined to destroy them, their country, or the stability of the free world.",
+    excerpt: "His heart raced as footsteps echoed down the dark corridor, coming ever closer."
+  },
+  {
+    name: "Romance",
+    description: "Romance fiction places its primary focus on the relationship and romantic love between two people, and usually has an emotionally satisfying and optimistic ending.",
+    excerpt: "Their eyes met across the crowded room, and in that moment, everything changed."
+  },
+  {
+    name: "Historical Fiction",
+    description: "Historical fiction is a literary genre in which the plot takes place in a setting related to the past events, but is fictional.",
+    excerpt: "The young soldier watched as the armada of ships approached the shores of Normandy, knowing history was about to be made."
+  },
+  {
+    name: "Horror",
+    description: "Horror fiction aims to frighten, scare, or disgust, and cause feelings of terror, horror, and in extreme cases, repulsion.",
+    excerpt: "The floorboards creaked overhead, despite the house being empty—or so they had believed."
+  },
+  {
+    name: "Biography",
+    description: "A biography is an account of a person's life, written by someone else.",
+    excerpt: "Before becoming the person history would remember, they were simply a child with extraordinary dreams."
+  },
+  {
+    name: "Autobiography",
+    description: "An autobiography is an account of a person's life, written by that person.",
+    excerpt: "As I reflect on the journey that brought me here, I realize that every failure was a necessary step toward success."
+  },
+  {
+    name: "Self-help",
+    description: "Self-help books are books that are written with the intention to instruct readers on solving personal problems.",
+    excerpt: "The first step to transformation isn't changing your circumstances—it's changing your mindset."
+  },
+  {
+    name: "Young Adult",
+    description: "Young adult fiction is written for readers from 12 to 18 years of age. While the genre is targeted to teenagers, approximately half of YA readers are adults.",
+    excerpt: "High school was a battlefield, and she was determined to not just survive, but thrive."
+  },
+  {
+    name: "Children's",
+    description: "Children's literature is for readers and listeners up to about age 12.",
+    excerpt: "The little rabbit hopped through the magical garden, discovering wonders behind every flower."
+  },
+  {
+    name: "Poetry",
+    description: "Poetry is a type of literature that conveys ideas, experiences, or emotions through language chosen and arranged for its meaning, sound, and rhythm.",
+    excerpt: "Words dance like raindrops on autumn leaves, whispering secrets only the heart can hear."
+  },
+  {
+    name: "Dystopian",
+    description: "Dystopian fiction deals with imaginary communities or societies that are undesirable or frightening.",
+    excerpt: "The cameras watched from every corner, recording not just actions but thoughts deemed dangerous to the State."
+  },
+  {
+    name: "Adventure",
+    description: "Adventure fiction is fiction that usually presents danger, or gives the reader a sense of excitement.",
+    excerpt: "The ancient map burned in his hands as he finally understood where the lost treasure was hidden."
+  },
+  {
+    name: "Comedy",
+    description: "Comedy is a genre of fiction that consists of discourses or works intended to be humorous or amusing by inducing laughter.",
+    excerpt: "He practiced his best man speech in front of the mirror, unaware that his microphone was already on and broadcasting to the entire reception."
+  },
+  {
+    name: "Satire",
+    description: "Satire is a genre of literature and performing arts, in which vices, follies, abuses, and shortcomings are held up to ridicule.",
+    excerpt: "The politicians declared the toxic waste dump a 'natural wellness zone' and charged admission."
+  },
+  {
+    name: "Graphic Novel",
+    description: "A graphic novel is a book made up of comics content. Although the word novel normally refers to long fictional works, the term graphic novel is applied broadly.",
+    excerpt: "The panels flowed from one to another, images telling more of the story than words ever could."
+  },
+  {
+    name: "Memoir",
+    description: "A memoir is a collection of memories that an individual writes about moments or events, both public or private, that took place in the author's life.",
+    excerpt: "The small village where I spent my childhood exists now only in my memory, transformed by time and progress."
+  },
+  {
+    name: "Crime",
+    description: "Crime fiction is the literary genre that fictionalizes crimes, their detection, criminals, and their motives.",
+    excerpt: "The perfect crime, he thought, until he noticed the single thread left behind on the safe's lock."
+  },
+  {
+    name: "Classic",
+    description: "A classic is a book accepted as being exemplary or noteworthy. It's a work that has been accepted into the canon of great literature.",
+    excerpt: "The timeless words resonated across centuries, speaking to the human condition that remains unchanged."
+  },
+  {
+    name: "Philosophy",
+    description: "Philosophical literature addresses the fundamental nature of existence, reality, morality, knowledge, and wisdom.",
+    excerpt: "To understand the self is to understand the universe, for we are not separate from that which we observe."
+  }
+]
+
+# Create genres
+genres.each do |genre_attributes|
+  Genre.find_or_create_by!(name: genre_attributes[:name]) do |genre|
+    genre.description = genre_attributes[:description]
+    genre.excerpt = genre_attributes[:excerpt]
+  end
+end
+
+puts "Created #{Genre.count} genres"

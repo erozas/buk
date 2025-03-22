@@ -22,5 +22,10 @@ class Avo::Resources::Book < Avo::BaseResource
     field :description, as: :textarea
     field :pages_count, as: :number
     field :author_name, as: :text
+    field :genres,
+      as: :has_many, 
+      through: :book_genres, 
+      show_on: [:edit, :show],
+      scope: -> { query.alphabetical }
   end
 end

@@ -4,6 +4,14 @@ class Avo::Resources::Genre < Avo::BaseResource
   # self.search = {
   #   query: -> { query.ransack(id_eq: params[:q], m: "or").result(distinct: false) }
   # }
+
+  self.find_record_method = -> {
+    begin  
+      query.friendly.find(id)
+    rescue
+      query.find(id)
+    end
+  }
   
   def fields
     field :id, as: :id

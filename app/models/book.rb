@@ -20,6 +20,9 @@
 #
 class Book < ApplicationRecord
   has_one_attached :cover
+
+  has_many :book_genres, dependent: :destroy
+  has_many :genres, through: :book_genres
   has_many :reviews, class_name: "BookReview", dependent: :destroy
 
   validates :title, presence: true, uniqueness: true

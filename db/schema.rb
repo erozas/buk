@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_024448) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_22_025358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,6 +55,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_024448) do
     t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["title"], name: "index_articles_on_title", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "book_genres", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_book_genres_on_book_id"
+    t.index ["genre_id"], name: "index_book_genres_on_genre_id"
   end
 
   create_table "book_reviews", force: :cascade do |t|
@@ -136,6 +145,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_024448) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "users"
+  add_foreign_key "book_genres", "books"
+  add_foreign_key "book_genres", "genres"
   add_foreign_key "book_reviews", "books"
   add_foreign_key "book_reviews", "users"
   add_foreign_key "connected_services", "users"
