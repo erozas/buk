@@ -60,6 +60,10 @@ class User < ApplicationRecord
     return_user
   end
 
+  def initials
+    username.split.map(&:first).join.upcase
+  end
+
   private
   
   def should_generate_new_friendly_id?
