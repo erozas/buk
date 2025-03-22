@@ -1,10 +1,10 @@
-<div class="h-full border-l border-gray-100 p-6 space-y-8">
+<div class="h-full p-6 space-y-8">
   <!-- Profile section -->
   <div class="text-center pb-6 border-b border-gray-100">
     <div class="bg-emerald-100 h-16 w-16 rounded-full flex items-center justify-center mx-auto mb-3">
-      <span class="text-emerald-600 text-xl font-semibold">JD</span>
+      <span class="text-emerald-600 text-xl font-semibold"><%= @article.user.initials %></span>
     </div>
-    <h3 class="font-medium text-gray-900">John Doe</h3>
+    <h3 class="font-medium text-gray-900"><%= @article.user.username %></h3>
     <p class="text-sm text-gray-500">Content Writer</p>
   </div>
   

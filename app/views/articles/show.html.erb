@@ -1,11 +1,15 @@
-<article class="max-w-screen-xl mx-auto px-6 sm:px-8 py-12">
-  <div class="grid grid-cols-12 gap-x-6">
+<article class="max-w-screen-xl mx-auto px-6 sm:px-8 pt-8 pb-12">
+  <div class="grid grid-cols-12 gap-x-8">
     <div class="col-span-9">
       <div class="mb-6">
         <%= render 'articles/breadcrumbs' %>
-        
+        <% if @article.cover.attached? %>
+          <%= image_tag @article.cover, class: "w-full object-cover rounded-lg mb-4" %>
+        <% else %>
+          <div class="w-full h-48 bg-gradient-to-b from-gray-100 to-gray-200 rounded-lg mb-4"></div>
+        <% end %>
         <!-- Article title -->
-        <h1 class="text-4xl font-bold text-gray-900 mb-4"><%= @article.title %></h1>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4"><%= @article.title %></h1>
         
         <!-- Article metadata -->
         <div class="flex items-center space-x-4 mb-2">
