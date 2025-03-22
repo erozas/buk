@@ -30,6 +30,7 @@ class User < ApplicationRecord
     { name: :google_oauth2, humanized_name: "Google" }
   ]
   has_one_attached :avatar
+  has_many :articles, dependent: :destroy
   has_many :book_reviews, dependent: :destroy
   has_many :reviewed_books, through: :book_reviews, source: :book
   has_many :connected_services, dependent: :destroy
