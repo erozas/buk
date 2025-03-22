@@ -1,24 +1,7 @@
-# README
+Buk is a simple Ruby on Rails application used as a mechanism to show and teach Ruby on Rails concepts.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+It consists on a book repository and a blog.
 
-Things you may want to cover:
+To handle admin tasks, it uses the [Avo Rails Admin Interface](https://avohq.io) in order to simplify the process of managing resources.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+It's currently at Rails 8.0.2 and uses Postgres as the database engine.
