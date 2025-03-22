@@ -46,8 +46,18 @@
       <div class="bg-white rounded-lg border border-neutral-200 overflow-hidden transition-transform duration-300">
         <div class="h-56 bg-gray-200 relative">
           <% if book.cover.attached? %>
-            <%= image_tag book.cover, class: "h-full w-full object-cover" %>
-            <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+            <%= link_to book_path(book) do %>
+              <%= image_tag book.cover, class: "h-full w-full object-cover" %>
+              <div class="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+                <div class="flex items-center space-x-4 absolute bottom-2 left-4">
+                  <% book.genres.each do |genre| %>
+                    <span class="text-white text-xs px-2 py-1 rounded">
+                      <%= genre.name %>
+                    </span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           <% else %>
             <div class="h-full w-full flex items-center justify-center bg-gradient-to-br from-emerald-50 to-emerald-100">
               <div class="text-center p-4">

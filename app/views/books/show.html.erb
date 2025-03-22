@@ -5,7 +5,8 @@
   <div class="bg-white overflow-hidden">
     <div class="md:flex">
       <div class="md:flex-shrink-0 relative">
-        <div class="block md:hidden absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-transparent h-1/4"></div>
+        <div class="block md:hidden absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-transparent h-1/4">
+        </div>
         <div class="absolute left-3 top-3 block md:hidden">
           <%= link_to "← Back to Books", root_path, class: "text-white hover:text-gray-200" unless hotwire_native_app? %>
         </div>
@@ -14,7 +15,7 @@
         <% end %>
         <%= image_tag @book.cover, class: "h-72 w-full object-cover md:w-48" %>
       </div>
-      <div class="py-4 px-8">
+      <div class="px-8">
         <div class="flex justify-between text-sm text-gray-500">
           <p>ISBN: <%= @book.isbn %></p>
           <p><%= @book.pages_count %> pages</p>
