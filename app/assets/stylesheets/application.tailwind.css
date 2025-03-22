@@ -31,7 +31,7 @@ body {
   }
   
   p {
-    @apply my-3 text-lg;
+    @apply mt-3 mb-6 text-lg;
   }
   
   ul, ol {
