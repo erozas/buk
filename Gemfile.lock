@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/erozas/schema-dot-org
+  revision: 4bfdff9d8d7bf9a25596e2b24b0729661cfb63f8
+  specs:
+    schema_dot_org (2.2.3)
+      validated_object (~> 2.3)
+
+GIT
   remote: https://github.com/hotwired/turbo-rails.git
   revision: 94767d3a84f470c2d0aec8c3f9e2e7c784bc8de7
   branch: main
@@ -406,8 +413,6 @@ GEM
       ffi (~> 1.12)
       logger
     rubyzip (2.4.1)
-    schema_dot_org (2.2.3)
-      validated_object (~> 2.3)
     securerandom (0.4.1)
     selenium-webdriver (4.29.1)
       base64 (~> 0.2)
@@ -420,7 +425,7 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
-    sorbet-runtime (0.5.11952)
+    sorbet-runtime (0.5.11953)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -501,12 +506,13 @@ DEPENDENCIES
   omniauth-github
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
+  pagy
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 8.0.2)
   ransack
   rubocop-rails-omakase
-  schema_dot_org
+  schema_dot_org!
   selenium-webdriver
   sitemap_generator
   sprockets-rails
