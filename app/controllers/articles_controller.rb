@@ -13,6 +13,10 @@ class ArticlesController < ApplicationController
 
   private
 
+  def set_article
+    @article = Article.friendly.find(params[:id])
+  end
+
   def set_schema
     organization = SchemaDotOrg::Organization.new(
       name: "Buk",
@@ -22,16 +26,50 @@ class ArticlesController < ApplicationController
       telephone: "+1234567890"
     )
 
+    author = SchemaDotOrg::Person.new(
+      name: @article.user.username,
+      url: user_url(@article.user),
+    )
+
+    image = SchemaDotOrg::ImageObject.new(
+      url: url_for(@article.cover),
+      width: @article.cover.metadata["width"],
+      height: @article.cover.metadata["height"]
+    )
+
     article = SchemaDotOrg::Article.new(
       name: @article.title,
       url: article_url(@article),
       description: @article.excerpt,
       article_body: @article.content,
-      date_published: @article.published_at,
+      date_published: @article.published_at.to_time.iso8601,
       publisher: organization,
-      image: @article.image,
+      image: image,
+      author: author
     )
 
-    @schema = SchemaDotOrg::GraphContainer.new([organization, article])
+    home_breadcrumb = SchemaDotOrg::ListItem.new(
+      position: 1,
+      name: "Home",
+      item: root_url
+    )
+
+    blog_breadcrumb = SchemaDotOrg::ListItem.new(
+      position: 2,
+      name: "Blog",
+      item: blog_url,
+    )
+
+    article_breadcrumb = SchemaDotOrg::ListItem.new(
+      position: 3,
+      name: @article.title,
+      item: article_url(@article)
+    )
+
+    breadcrumbs = SchemaDotOrg::BreadcrumbList.new(
+      item_list_element: [home_breadcrumb, blog_breadcrumb, article_breadcrumb]
+    )
+
+    @schema = SchemaDotOrg::GraphContainer.new([organization, article, breadcrumbs])
   end
 end
