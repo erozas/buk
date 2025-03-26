@@ -5,7 +5,11 @@
       <div class="grid grid-cols-12">
         <div class="col-span-12 md:col-span-6 lg:col-span-4 py-6">
           <div class="flex items-center gap-x-4 px-8">
-            <%= image_tag current_user.avatar, class: "w-16 h-16 rounded-full" %>
+            <% if current_user.avatar.attached? %>
+              <%= image_tag current_user.avatar, class: "w-16 h-16 rounded-full" %>
+            <% else %>
+              <%= content_tag :div, "", class: "w-16 h-16 rounded-full bg-emerald-300" %>
+            <% end %>
             <div class="flex flex-col">
               <h1 class="text-2xl font-bold"><%= current_user.username %></h1>
               <p class="text-zinc-600">Joined Buk <%= time_ago_in_words(current_user.created_at) %> ago</p>
@@ -22,6 +26,8 @@
     <%= render "profiles/sidebar" %>
     <div class="col-span-12 md:col-span-6 lg:col-span-8">
       <div class="bg-white border border-zinc-200 rounded-lg py-4 px-6">
+        <div class="flex items-center justify-between">
+        </div>
         <h2 class="text-lg font-bold text-zinc-950">Connected OAuth Account</h2>
         <div class="flex items-center gap-x-3 mt-2.5">
           <% if current_user.connected_services.any? %>
