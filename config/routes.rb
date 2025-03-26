@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show, :new, :create, :edit, :update] do
     resources :reviews, only: [:new, :create]
   end
+  resources :users, only: [:show]
 
   # Blog routes
   get 'blog', to: 'articles#index', as: :blog
