@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/erozas/schema-dot-org
-  revision: 4bfdff9d8d7bf9a25596e2b24b0729661cfb63f8
+  revision: b02758ce3ba44d7273f3ca17bbbe44d313d12f37
   specs:
     schema_dot_org (2.2.3)
       validated_object (~> 2.3)
@@ -425,7 +425,7 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
-    sorbet-runtime (0.5.11953)
+    sorbet-runtime (0.5.11956)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
