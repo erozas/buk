@@ -64,6 +64,15 @@ class User < ApplicationRecord
     username.split.map(&:first).join.upcase
   end
 
+  def to_json_ld
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": username,
+      "url": "https://avohq.io/accounts/#{id}"
+    }
+  end
+
   private
   
   def should_generate_new_friendly_id?
