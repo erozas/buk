@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def provider_icon_path(provider)
     case provider
       when "google_oauth2"
