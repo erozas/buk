@@ -5,7 +5,11 @@ class StaticController < ApplicationController
     @books = Book.all
   end
 
-  def faq; end
+  def faq
+    faqs_path = Rails.root.join('config', 'faqs.yml')
+    @faqs = YAML.load_file(faqs_path)['faqs']
+    @faq_schema = set_faq_schema
+  end
 
   def customers; end
 
@@ -42,5 +46,23 @@ class StaticController < ApplicationController
     )
 
     @schema = SchemaDotOrg::GraphContainer.new([organization, web_site, web_page])
+  end
+
+  def set_faq_schema
+    questions = []
+    @faqs.each do |question|
+      answer = SchemaDotOrg::Answer.new(
+        text: question['answer']
+      )
+      question = SchemaDotOrg::Question.new(
+        name: question['question'],
+        accepted_answer: answer
+      )
+      questions << question
+    end
+    SchemaDotOrg::FAQPage.new(
+      name: "Frequently Asked Questions",
+      main_entity: questions
+    )
   end
 end
