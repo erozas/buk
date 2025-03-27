@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/erozas/schema-dot-org
-  revision: b02758ce3ba44d7273f3ca17bbbe44d313d12f37
+  revision: c43aad259b4e384a0a56ee3b91f36eb89f2726f5
   specs:
     schema_dot_org (2.2.3)
       validated_object (~> 2.3)
