@@ -21,16 +21,21 @@
 class Book < ApplicationRecord
   has_one_attached :cover
 
+  has_many :book_authors, dependent: :destroy
+  has_many :authors, through: :book_authors
   has_many :book_genres, dependent: :destroy
   has_many :genres, through: :book_genres
   has_many :reviews, class_name: "BookReview", dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
   validates :isbn,  presence: true, uniqueness: true
-  validates :author_name, presence: true
   
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  def author_name
+    authors.map(&:name).join(", ")
+  end
 
   private
 

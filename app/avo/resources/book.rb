@@ -21,7 +21,13 @@ class Avo::Resources::Book < Avo::BaseResource
     field :excerpt, as: :textarea
     field :description, as: :textarea
     field :pages_count, as: :number
-    field :author_name, as: :text
+    field :published_at, as: :date
+    field :authors, 
+      as: :has_many, 
+      through: :book_authors, 
+      show_on: [:edit, :show], 
+      scope: -> { query.alphabetical }
+    field :author_name, as: :text, show_on: [:index, :show]
     field :genres,
       as: :has_many, 
       through: :book_genres, 
