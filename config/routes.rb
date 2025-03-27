@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get 'dynamic-sitemap.xml', to: 'sitemap#index', as: :dynamic_sitemap
 
   resources :articles, only: [:index, :show]
+  resources :authors, only: [:show]
   resource :oauth_connections, only: [:create]
   resource :profile, only: [:show]
   resources :books, only: [:index, :show, :new, :create, :edit, :update] do

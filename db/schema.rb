@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_22_025358) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_26_234842) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -57,6 +57,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_025358) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "birthdate"
+    t.string "nationality"
+    t.text "bio"
+    t.integer "books_published_count"
+    t.string "wikipedia_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_authors_on_slug", unique: true
+  end
+
+  create_table "book_authors", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_book_authors_on_author_id"
+    t.index ["book_id"], name: "index_book_authors_on_book_id"
+  end
+
   create_table "book_genres", force: :cascade do |t|
     t.bigint "book_id", null: false
     t.bigint "genre_id", null: false
@@ -84,9 +107,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_025358) do
     t.text "description"
     t.string "slug"
     t.integer "pages_count", default: 0
-    t.string "author_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "published_at"
     t.index ["slug"], name: "index_books_on_slug", unique: true
     t.index ["title"], name: "index_books_on_title", unique: true
   end
@@ -145,6 +168,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_22_025358) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "users"
+  add_foreign_key "book_authors", "authors"
+  add_foreign_key "book_authors", "books"
   add_foreign_key "book_genres", "books"
   add_foreign_key "book_genres", "genres"
   add_foreign_key "book_reviews", "books"
