@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  before_action :set_book, only: [:show]
+  before_action :set_schema, only: [:show]
+
   def index
     query = Book.all
   
@@ -24,6 +27,39 @@ class BooksController < ApplicationController
   end
 
   def show
+  end
+
+  private
+
+  def set_book
     @book = Book.friendly.find(params[:id])
+  end
+
+  def set_schema
+    author = SchemaDotOrg::Person.new(
+      name: @book.author_name,
+      url: author_url(@book.authors.first),
+    )
+    
+    publisher = SchemaDotOrg::Organization.new(
+      name: "Buk",
+      url: "https://buk.com",
+      logo: "https://buk.com/logo.png",
+    )
+
+    thumbnail = SchemaDotOrg::ImageObject.new(
+      url: url_for(@book.cover),
+    )
+
+    @schema = SchemaDotOrg::Book.new(
+      name: @book.title,
+      author: author,
+      publisher: publisher,
+      isbn: @book.isbn,
+      date_published: @book.published_at.to_date.iso8601,
+      genre: @book.genres.map(&:name),
+      description: @book.description,
+      thumbnail: thumbnail,
+    )
   end
 end
