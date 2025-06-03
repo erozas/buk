@@ -7,10 +7,10 @@ GIT
 
 GIT
   remote: https://github.com/hotwired/turbo-rails.git
-  revision: cb47713ab2abc0692e36215cb7e60d48461ae654
+  revision: 1782f02c919a72643d474f105293c1213f30034f
   branch: main
   specs:
-    turbo-rails (2.0.13)
+    turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
 
@@ -139,8 +139,8 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
     bcrypt (3.1.20)
-    benchmark (0.4.0)
-    bigdecimal (3.1.9)
+    benchmark (0.4.1)
+    bigdecimal (3.2.1)
     bindex (0.8.1)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
@@ -366,7 +366,7 @@ GEM
       thor (~> 1.0, >= 1.2.2)
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
-    rake (13.2.1)
+    rake (13.3.0)
     rake-compiler-dock (1.9.1)
     ransack (4.3.0)
       activerecord (>= 6.1.5)
