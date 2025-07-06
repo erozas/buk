@@ -102,7 +102,7 @@ GEM
       public_suffix (>= 2.0.2, < 7.0)
     annotaterb (4.15.0)
     ast (2.4.3)
-    avo (3.21.0)
+    avo (3.22.0)
       actionview (>= 6.1)
       active_link_to
       activerecord (>= 6.1)
