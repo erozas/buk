@@ -36,6 +36,8 @@ Rails.application.routes.draw do
   get 'blog', to: 'articles#index', as: :blog
   get 'blog/:id', to: 'articles#show', as: :blog_post
 
+  get "dashboard", to: "static#dashboard", as: :dashboard
+
   # Defines the root path route ("/")
   root "static#home"
 end
