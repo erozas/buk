@@ -6,7 +6,9 @@
         <div class="col-span-12 md:col-span-6 lg:col-span-4 py-6">
           <div class="flex items-center gap-x-4 px-8">
             <% if current_user.avatar.attached? %>
-              <%= image_tag current_user.avatar, class: "w-16 h-16 rounded-full" %>
+              <div class="w-16 h-16 rounded-full overflow-hidden">
+                <%= image_tag current_user.avatar, class: "w-full h-full object-cover" %>
+              </div>
             <% else %>
               <%= content_tag :div, "", class: "w-16 h-16 rounded-full bg-emerald-300" %>
             <% end %>
@@ -21,7 +23,7 @@
   </div>
 </div>
 
-<div class="max-w-screen-xl mx-auto pt-12 pb-16">
+<div class="max-w-screen-xl mx-auto pt-20 pb-24">
   <div class="grid grid-cols-12 gap-x-6">
     <%= render "profiles/sidebar" %>
     <div class="col-span-12 md:col-span-6 lg:col-span-8">
