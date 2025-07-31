@@ -1,7 +1,11 @@
 <div class="col-span-12 md:col-span-4">
   <%= link_to book_path(book) do %>
     <div class="flex items-start space-x-6 p-4 bg-white border border-gray-200 rounded-lg transition duration-300">
-      <%= image_tag url_for(book.cover), class: "w-32 h-48 object-cover rounded-md shadow-sm" %>
+      <% if book.cover.attached? %>
+        <%= image_tag url_for(book.cover), class: "w-32 h-48 object-cover rounded-md shadow-sm" %>
+      <% else %>
+        <div class="w-32 h-48 bg-gray-200 rounded-md shadow-sm"></div>
+      <% end %>
       <div class="flex flex-col space-y-2">
         <h2 class="text-lg font-bold text-gray-800"><%= book.title %></h2>
         <p class="text-sm text-gray-600"><%= book.author_name %></p>
