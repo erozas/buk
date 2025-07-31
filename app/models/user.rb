@@ -73,6 +73,10 @@ class User < ApplicationRecord
     }
   end
 
+  def confirmed?
+    true
+  end
+
   private
   
   def should_generate_new_friendly_id?
