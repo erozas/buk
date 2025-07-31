@@ -41,3 +41,9 @@
 
 # Ignore application configuration
 /config/application.yml
+
+/config/credentials/development.key
+
+# Ignore DS_Store files
+.DS_Store
+**/.DS_Store
