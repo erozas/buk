@@ -104,7 +104,7 @@ GEM
       activerecord (>= 6.0.0)
       activesupport (>= 6.0.0)
     ast (2.4.3)
-    avo (3.22.5)
+    avo (3.23.0)
       actionview (>= 6.1)
       active_link_to
       activerecord (>= 6.1)
