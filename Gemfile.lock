@@ -277,7 +277,7 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.4)
-    marksmith (0.4.6)
+    marksmith (0.4.7)
       activesupport
     matrix (0.4.2)
     meta-tags (2.22.1)
