@@ -59,4 +59,4 @@ gem "ransack"
 gem "schema_dot_org", git: "https://github.com/erozas/schema-dot-org"
 gem "sitemap_generator"
 gem "whenever", require: false
-gem "fast-mcp", "~> 1.5"
+gem "fast-mcp", "~> 1.6"
